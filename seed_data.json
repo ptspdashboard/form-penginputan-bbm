@@ -1,0 +1,797 @@
+[
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Muat",
+    "u": "EC 02"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Muat",
+    "u": "EC 03"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Muat",
+    "u": "EH 06"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Muat",
+    "u": "LC 06"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Muat",
+    "u": "LK 15"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Angkut",
+    "u": "DC 07"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Angkut",
+    "u": "DC 08"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Angkut",
+    "u": "DC 09"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Angkut",
+    "u": "DC 10"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Angkut",
+    "u": "DK 15"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Angkut",
+    "u": "DK 16"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Angkut",
+    "u": "DK 17"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Angkut",
+    "u": "DK 18"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Angkut",
+    "u": "DK 19"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Bantu",
+    "u": "DM 03"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Bantu",
+    "u": "BK  11"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Bantu",
+    "u": "BC  13"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Bantu",
+    "u": "GC  02"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Bantu",
+    "u": "GC  03"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Penunjang Operasi",
+    "u": "TL 04"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Penunjang Operasi",
+    "u": "TL 06"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Penunjang Operasi",
+    "u": "TL 07"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Penunjang Operasi",
+    "u": "TL 09"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Penunjang Operasi",
+    "u": "TL 10"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Alat Penunjang Operasi",
+    "u": "TL 11"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Service Truck",
+    "u": "MS 02  ( PM Grusher ) BA 9000 SP"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Service Truck",
+    "u": "MS 07  ( PICK UP PH  )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Service Truck",
+    "u": "MS 16  ( FORKLIFT WHORK SHOP )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Service Truck",
+    "u": "MS 17  ( FORKLIFT KP LERENG )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Service Truck",
+    "u": "MS 18  ( TRUCK FUEL )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Service Truck",
+    "u": "MS 19  ( TRUCK SERVICE PH )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Service Truck",
+    "u": "MS 20  ( TRUCK FUEL )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Service Truck",
+    "u": "IVECO    BORDAK"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Service Truck",
+    "u": "BBM UNTUK BENCANA ALAM"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Crane",
+    "u": "CRANE AC 205  ( DEMAG )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Crane",
+    "u": "GMK 5220         ( GROVE  )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Crane",
+    "u": "BABY CRANE  DN 01 H ( BA 8038 BJ )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Crane",
+    "u": "BABY CRANE  DN02 N  ( BA8845 AB )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "Compresor Workshop"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "Compresor KP/LERENG"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "DW 500 S ( Mesin Las )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "PM RBC 2"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "PM RBC 1"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8868 BA     (  LV 09 )  STRADA"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BG 9202 CD     ( LV 13 )  STRADA"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "B    9352 NBA  ( LV 20 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8856 BF      ( LV 24 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8007 SP  MT 01 ( PICKUP BORDAK )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8352 AAB   ( LV 01 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8353 AAB   ( LV 02 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8354 AAB   ( LV 03 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8355 AAB   ( LV 04 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8356 AAB   ( LV 05 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8357 AAB   ( LV 06 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8358 AAB   ( LV 07 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8359 AAB   ( LV 08 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8360 AAB   ( LV 09 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8361 AAB   ( LV 10 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8362 AAB   ( LV 11 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8779 QY   ( LV 12 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8371 AAB   ( LV 12 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8372 AAB   ( LV 13 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8719 QY   ( LV 14 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8373 AAB   ( LV 15 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8374 AAB   ( LV 16 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8375 AAB   ( LV 17 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8392 AAB   ( LV 18 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8186 AAB   ( LV 23 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8187 AAB   ( LV BINS )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8305 AAA ( LV  01 ) PATROLI"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "BA 8830 BA    PENGGANTI"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "COLT LV RBC 2 BA 8606 XX"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "PM COMPRESSOR AIR MAN MEK 09"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "PM MEKANIK CRUSHER"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "PM MEKANIK 09   ( travo las denyo 01)"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "PM MEKANIK 09   ( travo las danyo 02 )"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "GENSET GUDANG HANDAK BARU"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "POMPA DOMPENG (PD 01)"
+  },
+  {
+    "p": "PT SEMEN PADANG",
+    "j": "Sarana Operasional",
+    "u": "COMPRESSOR ATLAS COPCO ( PUP )"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 200 ( Excavator )  202"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 300 ( Excavator )  302"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 400 ( Excavator )  401"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 400 ( Excavator )  402"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 400 ( Excavator )  403"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 400 ( Excavator )  404"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 850 ( Excavator )  801"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 850 ( Excavator )  802"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 850 ( Excavator )  803"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 850 ( Excavator )  804"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Muat",
+    "u": "PC 850 ( Excavator )  805"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  13"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  17"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 01"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 02"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 03"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 04"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 05"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 06"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 07"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 08"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 09"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 10"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 11"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 12"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 13"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 14"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 15"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 16"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 17"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 18"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 19"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 20"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 21"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 22"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 23"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 24"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 25"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 26"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 27"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Angkut",
+    "u": "SCANIA  B 28"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Bantu",
+    "u": "GD  01   ( Grader )"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Bantu",
+    "u": "BW 01   ( Compactor )"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Bantu",
+    "u": "WT 03   ( Water Truck  )"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Bantu",
+    "u": "ST   01   ( Service Truck 01 )"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Bantu",
+    "u": "DZ  01   ( D.85.E SS 01 )"
+  },
+  {
+    "p": "PT UTSG",
+    "j": "Alat Bantu",
+    "u": "HITACHI EX 01 350"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Muat",
+    "u": "PC  210    06     ( Long Arm )"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Muat",
+    "u": "PC  200    07"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Muat",
+    "u": "PC 200     10"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Muat",
+    "u": "PC  400    05"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Muat",
+    "u": "PC  400    08"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Muat",
+    "u": "L 956 HE ( LOADER PENGANTI ) BINS"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Muat",
+    "u": "NN 10  ( LOADER ) LK 01 DHN"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Muat",
+    "u": "HITACHI PC 211"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Angkut",
+    "u": "DT   01"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Angkut",
+    "u": "DT   02"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Angkut",
+    "u": "DT   03"
+  },
+  {
+    "p": "PT NJA",
+    "j": "Alat Angkut",
+    "u": "DT   04"
+  },
+  {
+    "p": "PT WBS",
+    "j": "Alat Bantu",
+    "u": "EKG  01  ( BREAKER )"
+  },
+  {
+    "p": "PT WBS",
+    "j": "Alat Bantu",
+    "u": "EKG  02  ( BREAKER )"
+  },
+  {
+    "p": "PT WBS",
+    "j": "Alat Bantu",
+    "u": "DKG  01  ( DOZZER )"
+  },
+  {
+    "p": "PT DAHANA",
+    "j": "Alat Bantu",
+    "u": "DHN FR 01      ( Furukawa )   HCR 1500"
+  },
+  {
+    "p": "PT DAHANA",
+    "j": "Alat Bantu",
+    "u": "DHN FR 02      ( Furukawa )   HCR 1500"
+  },
+  {
+    "p": "PT DAHANA",
+    "j": "Alat Bantu",
+    "u": "FCR AIRMAN  (  PCR 200  )"
+  },
+  {
+    "p": "PT DAHANA",
+    "j": "Alat Bantu",
+    "u": "PC 300 EK DHN 01"
+  },
+  {
+    "p": "PT DAHANA",
+    "j": "Alat Bantu",
+    "u": "DM - DHN 03"
+  },
+  {
+    "p": "PT DAHANA",
+    "j": "Alat Bantu",
+    "u": "WT 01 DHN"
+  },
+  {
+    "p": "PT DAHANA",
+    "j": "Sarana Operasi",
+    "u": "TANGKI DAHANA"
+  },
+  {
+    "p": "PT LTU",
+    "j": "Alat muat",
+    "u": "EX 01 CAT 320 D"
+  },
+  {
+    "p": "PT LTU",
+    "j": "Alat muat",
+    "u": "EX 02 CAT 320 D ( BINS )"
+  },
+  {
+    "p": "PT LTU",
+    "j": "Alat Angkut",
+    "u": "DT 01 D 9555 LB (BINS )"
+  },
+  {
+    "p": "PT LTU",
+    "j": "Alat Angkut",
+    "u": "DT 02 D 9555 AQ ( BINS )"
+  },
+  {
+    "p": "PT LTU",
+    "j": "Alat Angkut",
+    "u": "DT 03 D 9555 AP ( BINS )"
+  },
+  {
+    "p": "PT LTU",
+    "j": "Alat Bantu",
+    "u": "COMPACTOR"
+  },
+  {
+    "p": "PT LTU",
+    "j": "Alat Bantu",
+    "u": "GENSET WELDING TRUCK ( BA 9297 AO )"
+  },
+  {
+    "p": "PT. KEPSINDO",
+    "j": "ALAT BANTU",
+    "u": "WT 02"
+  },
+  {
+    "p": "NON CEMENT BISNIS",
+    "j": "ALAT BANTU",
+    "u": "FORKLIFT BINS"
+  },
+  {
+    "p": "NON CEMENT BISNIS",
+    "j": "ALAT BANTU",
+    "u": "FM 17 FABRIKASI"
+  },
+  {
+    "p": "NON CEMENT BISNIS",
+    "j": "ALAT BANTU",
+    "u": "OPERASIONAL BENGKEL   FABRIKASI"
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "perusahaan": [],
+  "jenis_alat": [
+    "Perusahaan",
+    "PT SEMEN PADANG",
+    "PT UTSG",
+    "PT NJA ",
+    "PT WBS",
+    "PT DAHANA",
+    "PT LTU",
+    "PT. KEPSINDO",
+    "NON CEMENT BISNIS"
+  ],
+  "tipe_unit": [
+    "Jenis Alat",
+    "Alat Muat",
+    "Alat Angkut",
+    "Alat Bantu",
+    "Alat Penunjang Operasi",
+    "Service Truck",
+    "Crane",
+    "Sarana Operasional",
+    "Sarana Operasi",
+    "Alat muat",
+    "ALAT BANTU"
+  ],
+  "mapping": {
+    "Perusahaan": [
+      "Jenis Alat"
+    ],
+    "PT SEMEN PADANG": [
+      "Alat Muat",
+      "Alat Angkut",
+      "Alat Bantu",
+      "Alat Penunjang Operasi",
+      "Service Truck",
+      "Crane",
+      "Sarana Operasional"
+    ],
+    "PT UTSG": [
+      "Alat Muat",
+      "Alat Angkut",
+      "Alat Bantu"
+    ],
+    "PT NJA ": [
+      "Alat Muat",
+      "Alat Angkut"
+    ],
+    "PT WBS": [
+      "Alat Bantu"
+    ],
+    "PT DAHANA": [
+      "Alat Bantu",
+      "Sarana Operasi"
+    ],
+    "PT LTU": [
+      "Alat muat",
+      "Alat Angkut",
+      "Alat Bantu"
+    ],
+    "PT. KEPSINDO": [
+      "ALAT BANTU"
+    ],
+    "NON CEMENT BISNIS": [
+      "ALAT BANTU"
+    ]
+  }
+}
