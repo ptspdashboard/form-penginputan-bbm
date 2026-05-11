@@ -21,7 +21,14 @@ export async function GET(req: Request) {
         { header: 'No', key: 'no', width: 5 },
         { header: 'Tanggal', key: 'tanggal', width: 15 },
         { header: 'Jam', key: 'jam', width: 10 },
-        { header: 'Link Foto Bon', key: 'fotoUrl', width: 80 },
+        { header: 'Type Unit', key: 'typeUnit', width: 15 },
+        { header: 'Nomenklatur', key: 'nomenklatur', width: 15 },
+        { header: 'HM/KM', key: 'hmKm', width: 12 },
+        { header: 'Jumlah Pengisian (Liter)', key: 'jumlahPengisian', width: 22 },
+        { header: 'Operator Solar', key: 'pengawasAlat', width: 20 },
+        { header: 'PJO', key: 'ppiPjoUtsg', width: 25 },
+        { header: 'SPV Solar', key: 'pengawasSolar', width: 20 },
+        { header: 'MGR DBMS', key: 'mgrDbms', width: 20 },
         { header: 'Waktu Upload', key: 'createdAt', width: 25 },
       ];
 
@@ -30,7 +37,14 @@ export async function GET(req: Request) {
           no: index + 1,
           tanggal: row.tanggal,
           jam: row.jam,
-          fotoUrl: row.fotoUrl,
+          typeUnit: row.typeUnit,
+          nomenklatur: row.nomenklatur,
+          hmKm: row.hmKm,
+          jumlahPengisian: row.jumlahPengisian,
+          pengawasAlat: row.pengawasAlat || "",
+          ppiPjoUtsg: row.ppiPjoUtsg || "",
+          pengawasSolar: row.pengawasSolar || "",
+          mgrDbms: row.mgrDbms || "",
           createdAt: row.createdAt.toLocaleString("id-ID"),
         });
       });
