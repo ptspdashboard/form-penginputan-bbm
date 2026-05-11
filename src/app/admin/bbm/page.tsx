@@ -3,11 +3,11 @@ export const dynamic = "force-dynamic";
 import { db } from "@/db";
 import { pengisianBbm } from "@/db/schema";
 import { desc } from "drizzle-orm";
-import { Shield, Download, MapPin } from "lucide-react";
+import { Shield, Download, Fuel } from "lucide-react";
 import Link from "next/link";
 
-export default async function AdminDashboard() {
-  const data = await db.select().from(pengisianBbm).orderBy(desc(pengisianBbm.createdAt)).limit(100);
+export default async function AdminBbmDashboard() {
+  const dataBbm = await db.select().from(pengisianBbm).orderBy(desc(pengisianBbm.createdAt)).limit(100);
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col py-10 px-6">
@@ -15,12 +15,12 @@ export default async function AdminDashboard() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8 bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-emerald-100 rounded-xl">
-              <Shield className="w-8 h-8 text-emerald-600" />
+            <div className="p-3 bg-blue-100 rounded-xl">
+              <Shield className="w-8 h-8 text-blue-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-slate-800">Dashboard Admin</h1>
-              <p className="text-slate-500 text-sm">Monitoring Data Pengisian BBM</p>
+              <h1 className="text-2xl font-bold text-slate-800">Admin Pengisian BBM</h1>
+              <p className="text-slate-500 text-sm">Monitoring Data Operasional BBM Alat Berat</p>
             </div>
           </div>
           
@@ -28,13 +28,16 @@ export default async function AdminDashboard() {
             <Link href="/" className="px-5 py-2.5 rounded-xl font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors">
               Kembali
             </Link>
-            <a href="/api/export" download="Export_Pengisian_BBM.xlsx" className="px-5 py-2.5 rounded-xl font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-sm shadow-emerald-200">
+            <a 
+              href="/api/export?type=bbm" 
+              className="px-5 py-2.5 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 transition-all flex items-center gap-2 shadow-sm shadow-blue-200"
+            >
               <Download className="w-5 h-5" /> Export Excel
             </a>
           </div>
         </div>
 
-        {/* Tabel Data */}
+        {/* Tabel Data BBM */}
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
@@ -51,12 +54,12 @@ export default async function AdminDashboard() {
                 </tr>
               </thead>
               <tbody className="text-sm">
-                {data.length === 0 ? (
+                {dataBbm.length === 0 ? (
                   <tr>
                     <td colSpan={8} className="p-8 text-center text-slate-500">Belum ada data pengisian.</td>
                   </tr>
                 ) : (
-                  data.map((row) => (
+                  dataBbm.map((row) => (
                     <tr key={row.id} className="border-b border-slate-50 hover:bg-slate-50 transition-colors text-slate-700">
                       <td className="p-4 text-slate-400 text-xs">
                         {row.createdAt.toLocaleString("id-ID")}
