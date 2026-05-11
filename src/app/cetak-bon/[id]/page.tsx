@@ -6,14 +6,20 @@ import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import PrintButton from "./PrintButton";
 
-// Parse PJO value: "Nama|PT Name" → { name, pt }
+// Parse PJO value: "Nama|PT Name" atau "Nama - PT Name" → { name, pt }
 function parsePjo(val: string | null) {
   if (!val) return { name: "", pt: "" };
   if (val.includes("|")) {
     const [name, pt] = val.split("|");
+    return { name: name.trim(), pt: pt.trim() };
+  }
+  if (val.includes(" - ")) {
+    const parts = val.split(" - ");
+    const name = parts[0].trim();
+    const pt = parts.slice(1).join(" - ").trim();
     return { name, pt };
   }
-  return { name: val, pt: "" };
+  return { name: val.trim(), pt: "" };
 }
 
 export default async function CetakBon({ params }: { params: Promise<{ id: string }> }) {
@@ -26,10 +32,11 @@ export default async function CetakBon({ params }: { params: Promise<{ id: strin
   const tanggalFormatted = `${tgl.getDate()} . ${tgl.getMonth() + 1} . ${tgl.getFullYear()}`;
 
   const pjo = parsePjo(bon.ppiPjoUtsg);
-  const pjoLabel = pjo.pt ? `PJO ${pjo.pt}` : "PJO";
+  const pjoLabel = pjo.pt ? `PJO ${pjo.pt.startsWith('PT') ? pjo.pt : 'PT ' + pjo.pt}` : "PJO";
 
   const b = '1.5px solid #000';
   const cellPad = '4px 6px';
+  const sigHeight = '90px';
 
   return (
     <>
@@ -126,25 +133,25 @@ export default async function CetakBon({ params }: { params: Promise<{ id: strin
               </thead>
               <tbody>
                 <tr>
-                  <td style={{ border: b, height: '55px', verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
-                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>{bon.pengawasAlat || ""}</div>
-                    <div style={{ fontSize: '9px', marginTop: '2px' }}>(........................)</div>
-                    <div style={{ fontSize: '7px', color: '#444' }}>(Operator Solar)</div>
+                  <td style={{ border: b, height: sigHeight, verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
+                    <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px' }}>{bon.pengawasAlat || ""}</div>
+                    <div style={{ fontSize: '9px', lineHeight: '0.5' }}>(........................)</div>
+                    <div style={{ fontSize: '7px', color: '#444', marginTop: '2px' }}>(Operator Solar)</div>
                   </td>
-                  <td style={{ border: b, height: '55px', verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
-                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>{pjo.name || ""}</div>
-                    <div style={{ fontSize: '9px', marginTop: '2px' }}>(........................)</div>
-                    <div style={{ fontSize: '7px', color: '#444' }}>({pjoLabel})</div>
+                  <td style={{ border: b, height: sigHeight, verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
+                    <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px' }}>{pjo.name || ""}</div>
+                    <div style={{ fontSize: '9px', lineHeight: '0.5' }}>(........................)</div>
+                    <div style={{ fontSize: '7px', color: '#444', marginTop: '2px' }}>({pjoLabel})</div>
                   </td>
-                  <td style={{ border: b, height: '55px', verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
-                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>{bon.pengawasSolar || ""}</div>
-                    <div style={{ fontSize: '9px', marginTop: '2px' }}>(........................)</div>
-                    <div style={{ fontSize: '7px', color: '#444' }}>(SPV. Solar)</div>
+                  <td style={{ border: b, height: sigHeight, verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
+                    <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px' }}>{bon.pengawasSolar || ""}</div>
+                    <div style={{ fontSize: '9px', lineHeight: '0.5' }}>(........................)</div>
+                    <div style={{ fontSize: '7px', color: '#444', marginTop: '2px' }}>(SPV. Solar)</div>
                   </td>
-                  <td style={{ border: b, height: '55px', verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
-                    <div style={{ fontSize: '8px', fontWeight: 'bold' }}>{bon.mgrDbms || ""}</div>
-                    <div style={{ fontSize: '9px', marginTop: '2px' }}>(........................)</div>
-                    <div style={{ fontSize: '7px', color: '#444' }}>(MGR. DBMS)</div>
+                  <td style={{ border: b, height: sigHeight, verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
+                    <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px' }}>{bon.mgrDbms || ""}</div>
+                    <div style={{ fontSize: '9px', lineHeight: '0.5' }}>(........................)</div>
+                    <div style={{ fontSize: '7px', color: '#444', marginTop: '2px' }}>(MGR. DBMS)</div>
                   </td>
                 </tr>
               </tbody>
