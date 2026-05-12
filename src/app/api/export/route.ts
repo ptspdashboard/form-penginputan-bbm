@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { pengisianBbm, pengambilanPltd } from "@/db/schema";
+import { pengisianBbm, pengambilanPltd, permintaanSolar } from "@/db/schema";
 import ExcelJS from "exceljs";
-import path from "path";
-import fs from "fs";
 import { desc } from "drizzle-orm";
-import { permintaanSolar } from "@/db/schema";
 
 export async function GET(req: Request) {
   try {

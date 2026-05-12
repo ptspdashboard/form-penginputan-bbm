@@ -7,53 +7,40 @@ export async function POST(request: Request) {
   try {
     const { username, password } = await request.json();
 
-    // Cek di database
+    // Cek di database terlebih dahulu
     const userList = await db.select().from(users).where(eq(users.username, username));
     const user = userList[0];
 
-    // Fallback default admin jika database kosong
-    if (!user && username === "admin" && password === "admin123") {
-      const response = NextResponse.json({ role: "admin" }, { status: 200 });
-      response.cookies.set("user_role", "admin", {
+    // Jika ditemukan di database
+    if (user) {
+      if (user.password !== password) {
+        return NextResponse.json({ error: "Username atau password salah!" }, { status: 401 });
+      }
+      const response = NextResponse.json({ role: user.role }, { status: 200 });
+      response.cookies.set("user_role", user.role, {
         httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", maxAge: 60 * 60 * 24, path: "/",
       });
       return response;
     }
 
-    // Fallback default petugas bon
-    if (!user && username === "petugasbon" && password === "petugas123") {
-      const response = NextResponse.json({ role: "petugas_bon" }, { status: 200 });
-      response.cookies.set("user_role", "petugas_bon", {
+    // Fallback: cek dari environment variables (aman, tidak ter-push ke GitHub)
+    const fallbackUsers = [
+      { user: process.env.ADMIN_USERNAME, pass: process.env.ADMIN_PASSWORD, role: "admin" },
+      { user: process.env.PETUGAS_BON_USERNAME, pass: process.env.PETUGAS_BON_PASSWORD, role: "petugas_bon" },
+      { user: process.env.PETUGAS_BBM_USERNAME, pass: process.env.PETUGAS_BBM_PASSWORD, role: "petugas_pengisian" },
+    ];
+
+    const matched = fallbackUsers.find(f => f.user && f.pass && username === f.user && password === f.pass);
+
+    if (matched) {
+      const response = NextResponse.json({ role: matched.role }, { status: 200 });
+      response.cookies.set("user_role", matched.role, {
         httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", maxAge: 60 * 60 * 24, path: "/",
       });
       return response;
     }
 
-    // Fallback default petugas pengisian
-    if (!user && username === "petugasbbm" && password === "petugas123") {
-      const response = NextResponse.json({ role: "petugas_pengisian" }, { status: 200 });
-      response.cookies.set("user_role", "petugas_pengisian", {
-        httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", maxAge: 60 * 60 * 24, path: "/",
-      });
-      return response;
-    }
-
-    if (!user || user.password !== password) {
-      return NextResponse.json({ error: "Username atau password salah!" }, { status: 401 });
-    }
-
-    const response = NextResponse.json({ role: user.role }, { status: 200 });
-    
-    // Set cookie session
-    response.cookies.set("user_role", user.role, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24, // 1 hari
-      path: "/",
-    });
-
-    return response;
+    return NextResponse.json({ error: "Username atau password salah!" }, { status: 401 });
   } catch (error) {
     return NextResponse.json({ error: "Terjadi kesalahan server" }, { status: 500 });
   }
