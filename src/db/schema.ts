@@ -64,5 +64,16 @@ export const permintaanSolar = pgTable("permintaan_solar", {
   ppiPjoUtsg: varchar("ppi_pjo_utsg", { length: 255 }),
   pengawasSolar: varchar("pengawas_solar", { length: 255 }),
   mgrDbms: varchar("mgr_dbms", { length: 255 }),
+  ttdOperator: text("ttd_operator"),
+  ttdPjo: text("ttd_pjo"),
+  ttdSpv: text("ttd_spv"),
+  ttdMgr: text("ttd_mgr"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: varchar("username", { length: 50 }).notNull().unique(),
+  password: varchar("password", { length: 255 }).notNull(), // Disimpan plain text untuk kesederhanaan, disarankan hash di produksi
+  role: varchar("role", { length: 50 }).notNull(), // 'admin', 'petugas_bon', 'petugas_pengisian'
 });

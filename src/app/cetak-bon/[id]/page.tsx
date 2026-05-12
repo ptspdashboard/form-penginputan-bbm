@@ -133,25 +133,53 @@ export default async function CetakBon({ params }: { params: Promise<{ id: strin
               </thead>
               <tbody>
                 <tr>
-                  <td style={{ border: b, height: sigHeight, verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
-                    <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px' }}>{bon.pengawasAlat || ""}</div>
-                    <div style={{ fontSize: '9px', lineHeight: '0.5' }}>(........................)</div>
-                    <div style={{ fontSize: '7px', color: '#444', marginTop: '2px' }}>(Operator Solar)</div>
+                  <td style={{ border: b, height: sigHeight, padding: '0' }}>
+                    <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', padding: '3px' }}>
+                      {bon.ttdOperator && (
+                        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <img src={bon.ttdOperator} alt="TTD" style={{ maxHeight: '100%', maxWidth: '90%', objectFit: 'contain' }} />
+                        </div>
+                      )}
+                      <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px', position: 'relative', zIndex: 10 }}>{bon.pengawasAlat || ""}</div>
+                      <div style={{ fontSize: '9px', lineHeight: '0.5', position: 'relative', zIndex: 10 }}>(........................)</div>
+                      <div style={{ fontSize: '7px', color: '#444', marginTop: '2px', position: 'relative', zIndex: 10 }}>(Operator Solar)</div>
+                    </div>
                   </td>
-                  <td style={{ border: b, height: sigHeight, verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
-                    <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px' }}>{pjo.name || ""}</div>
-                    <div style={{ fontSize: '9px', lineHeight: '0.5' }}>(........................)</div>
-                    <div style={{ fontSize: '7px', color: '#444', marginTop: '2px' }}>({pjoLabel})</div>
+                  <td style={{ border: b, height: sigHeight, padding: '0' }}>
+                    <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', padding: '3px' }}>
+                      {bon.ttdPjo && (
+                        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <img src={bon.ttdPjo} alt="TTD" style={{ maxHeight: '100%', maxWidth: '90%', objectFit: 'contain' }} />
+                        </div>
+                      )}
+                      <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px', position: 'relative', zIndex: 10 }}>{pjo.name || ""}</div>
+                      <div style={{ fontSize: '9px', lineHeight: '0.5', position: 'relative', zIndex: 10 }}>(........................)</div>
+                      <div style={{ fontSize: '7px', color: '#444', marginTop: '2px', position: 'relative', zIndex: 10 }}>({pjoLabel})</div>
+                    </div>
                   </td>
-                  <td style={{ border: b, height: sigHeight, verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
-                    <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px' }}>{bon.pengawasSolar || ""}</div>
-                    <div style={{ fontSize: '9px', lineHeight: '0.5' }}>(........................)</div>
-                    <div style={{ fontSize: '7px', color: '#444', marginTop: '2px' }}>(SPV. Solar)</div>
+                  <td style={{ border: b, height: sigHeight, padding: '0' }}>
+                    <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', padding: '3px' }}>
+                      {bon.ttdSpv && (
+                        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <img src={bon.ttdSpv} alt="TTD" style={{ maxHeight: '100%', maxWidth: '90%', objectFit: 'contain' }} />
+                        </div>
+                      )}
+                      <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px', position: 'relative', zIndex: 10 }}>{bon.pengawasSolar || ""}</div>
+                      <div style={{ fontSize: '9px', lineHeight: '0.5', position: 'relative', zIndex: 10 }}>(........................)</div>
+                      <div style={{ fontSize: '7px', color: '#444', marginTop: '2px', position: 'relative', zIndex: 10 }}>(SPV. Solar)</div>
+                    </div>
                   </td>
-                  <td style={{ border: b, height: sigHeight, verticalAlign: 'bottom', textAlign: 'center', padding: '3px' }}>
-                    <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px' }}>{bon.mgrDbms || ""}</div>
-                    <div style={{ fontSize: '9px', lineHeight: '0.5' }}>(........................)</div>
-                    <div style={{ fontSize: '7px', color: '#444', marginTop: '2px' }}>(MGR. DBMS)</div>
+                  <td style={{ border: b, height: sigHeight, padding: '0' }}>
+                    <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', padding: '3px' }}>
+                      {bon.ttdMgr && (
+                        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <img src={bon.ttdMgr} alt="TTD" style={{ maxHeight: '100%', maxWidth: '90%', objectFit: 'contain' }} />
+                        </div>
+                      )}
+                      <div style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: '1px', position: 'relative', zIndex: 10 }}>{bon.mgrDbms || ""}</div>
+                      <div style={{ fontSize: '9px', lineHeight: '0.5', position: 'relative', zIndex: 10 }}>(........................)</div>
+                      <div style={{ fontSize: '7px', color: '#444', marginTop: '2px', position: 'relative', zIndex: 10 }}>(MGR. DBMS)</div>
+                    </div>
                   </td>
                 </tr>
               </tbody>

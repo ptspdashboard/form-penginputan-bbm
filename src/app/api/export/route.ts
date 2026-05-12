@@ -107,56 +107,62 @@ export async function GET(req: Request) {
       return response;
     }
 
-    // Default to BBM
-    const templatePath = path.join(process.cwd(), "public", "template_pengisian.xlsx");
-    if (!fs.existsSync(templatePath)) {
-      return NextResponse.json({ error: "Template Excel tidak ditemukan di public/" }, { status: 404 });
-    }
-
+    // Default to BBM — Raw Data Export
+    const data = await db.select().from(pengisianBbm).orderBy(desc(pengisianBbm.createdAt));
     const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.readFile(templatePath);
-    const sheet = workbook.getWorksheet("PENGISIAN");
+    const sheet = workbook.addWorksheet("Pengisian BBM");
 
-    if (!sheet) {
-      return NextResponse.json({ error: "Sheet PENGISIAN tidak ditemukan dalam template" }, { status: 400 });
-    }
+    sheet.columns = [
+      { header: 'No', key: 'no', width: 5 },
+      { header: 'Waktu Input', key: 'waktuInput', width: 22 },
+      { header: 'Tanggal', key: 'tanggal', width: 14 },
+      { header: 'Shift', key: 'shift', width: 8 },
+      { header: 'Perusahaan', key: 'perusahaan', width: 22 },
+      { header: 'Jenis Alat', key: 'jenisAlat', width: 16 },
+      { header: 'Tipe Unit', key: 'tipeUnit', width: 16 },
+      { header: 'Meter Akhir (HM/Odo)', key: 'meterAkhir', width: 22 },
+      { header: 'Jam Operasi / Jarak', key: 'pemakaian', width: 20 },
+      { header: 'Jumlah Liter', key: 'liter', width: 14 },
+      { header: 'Liter/Jam', key: 'literJam', width: 12 },
+      { header: 'Liter/Km', key: 'literKm', width: 12 },
+    ];
 
-    const data = await db.select().from(pengisianBbm);
-    const unitRowMap = new Map<string, number>();
-    sheet.eachRow((row, rowNumber) => {
-      if (rowNumber < 7) return;
-      const unitName = row.getCell(4).value?.toString().trim();
-      if (unitName) {
-        unitRowMap.set(unitName, rowNumber);
-      }
+    const isKmUnit = (unit: string) => {
+      const lower = unit.toLowerCase();
+      return lower.includes('scania') || lower.includes('lv') || lower.includes('dt');
+    };
+
+    data.forEach((row, index) => {
+      const km = isKmUnit(row.tipeUnit);
+      sheet.addRow({
+        no: index + 1,
+        waktuInput: row.createdAt.toLocaleString("id-ID"),
+        tanggal: row.tanggal,
+        shift: row.shift === 'P' ? 'Pagi' : 'Sore',
+        perusahaan: row.perusahaan,
+        jenisAlat: row.jenisAlat,
+        tipeUnit: row.tipeUnit,
+        meterAkhir: row.meterAkhir ? parseFloat(row.meterAkhir) : null,
+        pemakaian: row.pemakaian ? parseFloat(row.pemakaian) : null,
+        liter: row.liter ? parseFloat(row.liter) : null,
+        literJam: (!km && row.rasio) ? parseFloat(row.rasio) : null,
+        literKm: (km && row.rasio) ? parseFloat(row.rasio) : null,
+      });
     });
 
-    for (const record of data) {
-      const rowIdx = unitRowMap.get(record.tipeUnit);
-      if (!rowIdx) continue;
+    // Style header
+    const headerRow = sheet.getRow(1);
+    headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' } };
+    headerRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1E40AF' } };
+    headerRow.alignment = { horizontal: 'center', vertical: 'middle' };
+    headerRow.height = 24;
 
-      const dateObj = new Date(record.tanggal);
-      const day = dateObj.getDate();
-      const startCol = 5 + ((day - 1) * 7);
-      const row = sheet.getRow(rowIdx);
-
-      if (record.shift === "P") {
-        row.getCell(startCol).value = parseFloat(record.liter);
-        row.getCell(startCol + 1).value = parseFloat(record.meterAkhir);
-      } else if (record.shift === "S") {
-        row.getCell(startCol + 2).value = parseFloat(record.liter);
-        row.getCell(startCol + 3).value = parseFloat(record.meterAkhir);
-      }
-
-      if (record.rasio) row.getCell(startCol + 4).value = parseFloat(record.rasio);
-      if (record.pemakaian) row.getCell(startCol + 5).value = parseFloat(record.pemakaian);
-      
-      const currentTotal = row.getCell(startCol + 6).value;
-      const totalNum = typeof currentTotal === 'number' ? currentTotal : 0;
-      row.getCell(startCol + 6).value = totalNum + parseFloat(record.liter);
-      
-      row.commit();
-    }
+    // Number format for decimal columns
+    sheet.getColumn('meterAkhir').numFmt = '#,##0.00';
+    sheet.getColumn('pemakaian').numFmt = '#,##0.00';
+    sheet.getColumn('liter').numFmt = '#,##0.00';
+    sheet.getColumn('literJam').numFmt = '#,##0.00';
+    sheet.getColumn('literKm').numFmt = '#,##0.00';
 
     const buffer = await workbook.xlsx.writeBuffer();
     const response = new NextResponse(buffer);
