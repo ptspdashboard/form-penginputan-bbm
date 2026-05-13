@@ -6,6 +6,8 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+    const fs = require('fs');
+    fs.appendFileSync('api_logs.txt', `[${new Date().toISOString()}] Incoming Body: ${JSON.stringify(body, null, 2)}\n`);
 
     // Validasi dasar & parsing robust
     const nLiter = parseFloat(String(body.liter || "0").replace(",", "."));
@@ -80,6 +82,16 @@ export async function POST(request: Request) {
       error: "Gagal menyimpan data", 
       details: error.message || "Terjadi kesalahan internal" 
     }, { status: 500 });
+  }
+}
+
+export async function GET() {
+  try {
+    const data = await db.select().from(permintaanSolar).orderBy(desc(permintaanSolar.createdAt));
+    return NextResponse.json(data);
+  } catch (error: any) {
+    console.error("GET Error:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 

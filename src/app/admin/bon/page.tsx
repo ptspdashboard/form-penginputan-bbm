@@ -8,10 +8,10 @@ interface BonData {
   id: number;
   tanggal: string;
   jam: string;
-  typeUnit: string;
+  tipeUnit: string;
   nomenklatur: string;
-  hmKm: string;
-  jumlahPengisian: string;
+  meterAkhir: string;
+  liter: string;
   createdAt: string;
 }
 
@@ -34,7 +34,7 @@ export default function AdminBonDashboard() {
     if (!search.trim()) return true;
     const q = search.toLowerCase();
     return (
-      d.typeUnit.toLowerCase().includes(q) ||
+      d.tipeUnit.toLowerCase().includes(q) ||
       d.nomenklatur.toLowerCase().includes(q) ||
       d.tanggal.includes(q)
     );
@@ -108,10 +108,10 @@ export default function AdminBonDashboard() {
                     <tr key={row.id} className="border-b border-slate-50 hover:bg-slate-50 transition-colors text-slate-700">
                       <td className="p-4 font-medium">{row.tanggal}</td>
                       <td className="p-4 text-slate-500">{row.jam}</td>
-                      <td className="p-4 font-semibold text-slate-800">{row.typeUnit}</td>
+                      <td className="p-4 font-semibold text-slate-800">{row.tipeUnit}</td>
                       <td className="p-4">{row.nomenklatur}</td>
-                      <td className="p-4 text-right font-mono">{row.hmKm}</td>
-                      <td className="p-4 text-right font-bold text-amber-600">{row.jumlahPengisian} L</td>
+                      <td className="p-4 text-right font-mono">{row.meterAkhir}</td>
+                      <td className="p-4 text-right font-bold text-amber-600">{row.liter} L</td>
                       <td className="p-4 text-center">
                         <Link 
                           href={`/cetak-bon/${row.id}`} 
