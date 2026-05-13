@@ -1,0 +1,522 @@
+{
+  "id": "b22d4876-44fb-40b7-bdfc-175ef0fa3aa4",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.jenis_alat": {
+      "name": "jenis_alat",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama": {
+          "name": "nama",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "jenis_alat_nama_unique": {
+          "name": "jenis_alat_nama_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "nama"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.mobil_pltd": {
+      "name": "mobil_pltd",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama": {
+          "name": "nama",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "mobil_pltd_nama_unique": {
+          "name": "mobil_pltd_nama_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "nama"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.pengambilan_pltd": {
+      "name": "pengambilan_pltd",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tanggal": {
+          "name": "tanggal",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mobil_pengangkut": {
+          "name": "mobil_pengangkut",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "no_bon_permintaan": {
+          "name": "no_bon_permintaan",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "jumlah_permintaan": {
+          "name": "jumlah_permintaan",
+          "type": "numeric(15, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fm_awal": {
+          "name": "fm_awal",
+          "type": "numeric(15, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fm_akhir": {
+          "name": "fm_akhir",
+          "type": "numeric(15, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "flow_meter": {
+          "name": "flow_meter",
+          "type": "numeric(15, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "meter_factor": {
+          "name": "meter_factor",
+          "type": "numeric(10, 4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "factor_meter": {
+          "name": "factor_meter",
+          "type": "numeric(15, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "keterangan": {
+          "name": "keterangan",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.pengisian_bbm": {
+      "name": "pengisian_bbm",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tanggal": {
+          "name": "tanggal",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "shift": {
+          "name": "shift",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "perusahaan": {
+          "name": "perusahaan",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "jenis_alat": {
+          "name": "jenis_alat",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipe_unit": {
+          "name": "tipe_unit",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "meter_akhir": {
+          "name": "meter_akhir",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pemakaian": {
+          "name": "pemakaian",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rasio": {
+          "name": "rasio",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "liter": {
+          "name": "liter",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "keterangan": {
+          "name": "keterangan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.permintaan_solar": {
+      "name": "permintaan_solar",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tanggal": {
+          "name": "tanggal",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "jam": {
+          "name": "jam",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipe_unit": {
+          "name": "tipe_unit",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nomenklatur": {
+          "name": "nomenklatur",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "meter_akhir": {
+          "name": "meter_akhir",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "liter": {
+          "name": "liter",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pengawas_alat": {
+          "name": "pengawas_alat",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ppi_pjo_utsg": {
+          "name": "ppi_pjo_utsg",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pengawas_solar": {
+          "name": "pengawas_solar",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mgr_dbms": {
+          "name": "mgr_dbms",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttd_operator": {
+          "name": "ttd_operator",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttd_pjo": {
+          "name": "ttd_pjo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttd_spv": {
+          "name": "ttd_spv",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ttd_mgr": {
+          "name": "ttd_mgr",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "keterangan": {
+          "name": "keterangan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.perusahaan": {
+      "name": "perusahaan",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama": {
+          "name": "nama",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "perusahaan_nama_unique": {
+          "name": "perusahaan_nama_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "nama"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.tipe_unit": {
+      "name": "tipe_unit",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama": {
+          "name": "nama",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "jenis_alat_id": {
+          "name": "jenis_alat_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "perusahaan_id": {
+          "name": "perusahaan_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_km": {
+          "name": "is_km",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "tipe_unit_jenis_alat_id_jenis_alat_id_fk": {
+          "name": "tipe_unit_jenis_alat_id_jenis_alat_id_fk",
+          "tableFrom": "tipe_unit",
+          "tableTo": "jenis_alat",
+          "columnsFrom": [
+            "jenis_alat_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "tipe_unit_perusahaan_id_perusahaan_id_fk": {
+          "name": "tipe_unit_perusahaan_id_perusahaan_id_fk",
+          "tableFrom": "tipe_unit",
+          "tableTo": "perusahaan",
+          "columnsFrom": [
+            "perusahaan_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_username_unique": {
+          "name": "users_username_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "username"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

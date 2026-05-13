@@ -18,14 +18,15 @@ export async function GET(req: Request) {
         { header: 'No', key: 'no', width: 5 },
         { header: 'Tanggal', key: 'tanggal', width: 15 },
         { header: 'Jam', key: 'jam', width: 10 },
-        { header: 'Type Unit', key: 'typeUnit', width: 15 },
+        { header: 'Tipe Unit', key: 'tipeUnit', width: 15 },
         { header: 'Nomenklatur', key: 'nomenklatur', width: 15 },
-        { header: 'HM/KM', key: 'hmKm', width: 12 },
-        { header: 'Jumlah Pengisian (Liter)', key: 'jumlahPengisian', width: 22 },
+        { header: 'Meter Akhir (HM/KM)', key: 'meterAkhir', width: 22 },
+        { header: 'Jumlah Liter', key: 'liter', width: 15 },
         { header: 'Operator Solar', key: 'pengawasAlat', width: 20 },
         { header: 'PJO', key: 'ppiPjoUtsg', width: 25 },
         { header: 'SPV Solar', key: 'pengawasSolar', width: 20 },
         { header: 'MGR DBMS', key: 'mgrDbms', width: 20 },
+        { header: 'Keterangan', key: 'keterangan', width: 30 },
         { header: 'Waktu Upload', key: 'createdAt', width: 25 },
       ];
 
@@ -34,14 +35,15 @@ export async function GET(req: Request) {
           no: index + 1,
           tanggal: row.tanggal,
           jam: row.jam,
-          typeUnit: row.typeUnit,
+          tipeUnit: row.tipeUnit,
           nomenklatur: row.nomenklatur,
-          hmKm: row.hmKm,
-          jumlahPengisian: row.jumlahPengisian,
+          meterAkhir: row.meterAkhir,
+          liter: row.liter,
           pengawasAlat: row.pengawasAlat || "",
           ppiPjoUtsg: row.ppiPjoUtsg || "",
           pengawasSolar: row.pengawasSolar || "",
           mgrDbms: row.mgrDbms || "",
+          keterangan: row.keterangan || "",
           createdAt: row.createdAt.toLocaleString("id-ID"),
         });
       });
@@ -61,7 +63,6 @@ export async function GET(req: Request) {
       const workbook = new ExcelJS.Workbook();
       const sheet = workbook.addWorksheet("PLTD");
 
-      // Set headers
       sheet.columns = [
         { header: 'No', key: 'no', width: 5 },
         { header: 'Tanggal', key: 'tanggal', width: 15 },
@@ -76,7 +77,6 @@ export async function GET(req: Request) {
         { header: 'Keterangan', key: 'keterangan', width: 30 }
       ];
 
-      // Add Data
       data.forEach((row, index) => {
         sheet.addRow({
           no: index + 1,
@@ -93,18 +93,17 @@ export async function GET(req: Request) {
         });
       });
 
-      // Style header
       sheet.getRow(1).font = { bold: true };
       sheet.getRow(1).alignment = { horizontal: 'center' };
 
       const buffer = await workbook.xlsx.writeBuffer();
       const response = new NextResponse(buffer);
       response.headers.set("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-      response.headers.set("Content-Disposition", 'attachment; filename="Export_Pengambilan_PLTD.xlsx"');
+      response.headers.set("Content-Disposition", 'attachment; filename="Export_PLTD.xlsx"');
       return response;
     }
 
-    // Default to BBM — Raw Data Export
+    // Default: Export Pengisian BBM (Admin Solar)
     const data = await db.select().from(pengisianBbm).orderBy(desc(pengisianBbm.createdAt));
     const workbook = new ExcelJS.Workbook();
     const sheet = workbook.addWorksheet("Pengisian BBM");
@@ -122,6 +121,7 @@ export async function GET(req: Request) {
       { header: 'Jumlah Liter', key: 'liter', width: 14 },
       { header: 'Liter/Jam', key: 'literJam', width: 12 },
       { header: 'Liter/Km', key: 'literKm', width: 12 },
+      { header: 'Keterangan', key: 'keterangan', width: 30 },
     ];
 
     const isKmUnit = (unit: string) => {
@@ -144,6 +144,7 @@ export async function GET(req: Request) {
         liter: row.liter ? parseFloat(row.liter) : null,
         literJam: (!km && row.rasio) ? parseFloat(row.rasio) : null,
         literKm: (km && row.rasio) ? parseFloat(row.rasio) : null,
+        keterangan: row.keterangan || "",
       });
     });
 
@@ -154,7 +155,7 @@ export async function GET(req: Request) {
     headerRow.alignment = { horizontal: 'center', vertical: 'middle' };
     headerRow.height = 24;
 
-    // Number format for decimal columns
+    // Number format
     sheet.getColumn('meterAkhir').numFmt = '#,##0.00';
     sheet.getColumn('pemakaian').numFmt = '#,##0.00';
     sheet.getColumn('liter').numFmt = '#,##0.00';

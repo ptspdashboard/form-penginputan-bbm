@@ -23,7 +23,7 @@ export async function GET(req: Request) {
       return NextResponse.json({ lastHmKm: null });
     }
 
-    return NextResponse.json({ lastHmKm: last.hmKm });
+    return NextResponse.json({ lastHmKm: last.meterAkhir });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Gagal mengambil data." }, { status: 500 });

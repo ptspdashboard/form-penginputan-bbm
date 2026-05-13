@@ -86,7 +86,7 @@ export default async function CetakBon({ params }: { params: Promise<{ id: strin
               <tr>
                 <td style={{ border: b, padding: cellPad, textAlign: 'center' }}>1.</td>
                 <td style={{ border: b, padding: cellPad, width: '105px' }}>Type Unit</td>
-                <td style={{ border: b, padding: cellPad, fontWeight: 'bold' }}>{bon.typeUnit}</td>
+                <td style={{ border: b, padding: cellPad, fontWeight: 'bold' }}>{bon.tipeUnit}</td>
               </tr>
               <tr>
                 <td style={{ border: b, padding: cellPad, textAlign: 'center' }}>2.</td>
@@ -96,12 +96,12 @@ export default async function CetakBon({ params }: { params: Promise<{ id: strin
               <tr>
                 <td style={{ border: b, padding: cellPad, textAlign: 'center' }}>3.</td>
                 <td style={{ border: b, padding: cellPad }}>HM / KM</td>
-                <td style={{ border: b, padding: cellPad, fontWeight: 'bold' }}>{bon.hmKm}</td>
+                <td style={{ border: b, padding: cellPad, fontWeight: 'bold' }}>{bon.meterAkhir}</td>
               </tr>
               <tr>
                 <td style={{ border: b, padding: cellPad, textAlign: 'center' }}>4.</td>
                 <td style={{ border: b, padding: cellPad }}>Jumlah Pengisian</td>
-                <td style={{ border: b, padding: cellPad, fontWeight: 'bold' }}>{bon.jumlahPengisian} &nbsp;&nbsp;Liter</td>
+                <td style={{ border: b, padding: cellPad, fontWeight: 'bold' }}>{bon.liter} &nbsp;&nbsp;Liter</td>
               </tr>
             </tbody>
           </table>

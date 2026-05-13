@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { pengisianBbm } from "@/db/schema";
 import { desc } from "drizzle-orm";
-import AdminBbmClient from "./AdminBbmClient";
+import AdminBbmClient from "@/app/admin/bbm/AdminBbmClient";
 
 export const dynamic = "force-dynamic";
 

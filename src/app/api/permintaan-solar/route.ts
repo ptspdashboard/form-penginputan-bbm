@@ -1,44 +1,48 @@
-import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { permintaanSolar, pengisianBbm } from "@/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { pengisianBbm, permintaanSolar } from "@/db/schema";
+import { desc, eq, and } from "drizzle-orm";
+import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const body = await req.json();
+    const body = await request.json();
 
-    if (!body.tipeUnit || !body.nomenklatur || !body.hmKm || !body.jumlahPengisian) {
-      return NextResponse.json({ error: "Semua field wajib diisi." }, { status: 400 });
+    // Validasi dasar & parsing robust
+    const nLiter = parseFloat(String(body.liter || "0").replace(",", "."));
+    const nMeterAkhir = parseFloat(String(body.meterAkhir || "0").replace(",", "."));
+
+    if (isNaN(nLiter) || isNaN(nMeterAkhir)) {
+      return NextResponse.json({ error: "Format angka Liter atau Meter Akhir tidak valid." }, { status: 400 });
     }
 
-    // 1. Simpan ke tabel permintaan_solar (untuk Admin Bon)
-    // Walaupun form baru punya field tambahan, kita tetap simpan data dasar ke tabel lama
-    const [inserted] = await db.insert(permintaanSolar).values({
+    // 1. Simpan ke tabel permintaan_solar
+    const [newSolar] = await db.insert(permintaanSolar).values({
       tanggal: body.tanggal,
       jam: body.jam,
-      typeUnit: body.tipeUnit, // disesuaikan dengan form baru
+      tipeUnit: body.tipeUnit,
       nomenklatur: body.nomenklatur,
-      hmKm: body.hmKm,
-      jumlahPengisian: body.jumlahPengisian,
-      pengawasAlat: body.pengawasAlat || null,
-      ppiPjoUtsg: body.ppiPjoUtsg || null,
-      pengawasSolar: body.pengawasSolar || null,
-      mgrDbms: body.mgrDbms || null,
-      ttdOperator: body.ttdOperator || null,
-      ttdPjo: body.ttdPjo || null,
-      ttdSpv: body.ttdSpv || null,
-      ttdMgr: body.ttdMgr || null,
-    }).returning();
+      meterAkhir: String(nMeterAkhir),
+      liter: String(nLiter),
+      pengawasAlat: body.pengawasAlat,
+      ppiPjoUtsg: body.ppiPjoUtsg,
+      pengawasSolar: body.pengawasSolar,
+      mgrDbms: body.mgrDbms,
+      ttdOperator: body.ttdOperator,
+      ttdPjo: body.ttdPjo,
+      ttdSpv: body.ttdSpv,
+      ttdMgr: body.ttdMgr,
+      keterangan: body.keterangan,
+    }).returning({ id: permintaanSolar.id });
 
-    // 2. Simpan ke tabel pengisian_bbm (untuk Admin Pengisian Solar)
-    const nLiter = parseFloat(body.jumlahPengisian);
-    const nMeterAkhir = parseFloat(body.hmKm);
-    const isKm = body.tipeUnit && (body.tipeUnit.toLowerCase().includes('dt') || body.tipeUnit.toLowerCase().includes('scania') || body.tipeUnit.toLowerCase().includes('lv'));
-
-    // Ambil data meter terakhir
+    // 2. Ambil data meter terakhir (berdasarkan nomenklatur dan tipeUnit)
     const lastRecord = await db.select()
       .from(pengisianBbm)
-      .where(eq(pengisianBbm.tipeUnit, body.tipeUnit))
+      .where(
+        and(
+          eq(pengisianBbm.tipeUnit, body.tipeUnit),
+          eq(pengisianBbm.nomenklatur, body.nomenklatur)
+        )
+      )
       .orderBy(desc(pengisianBbm.tanggal), desc(pengisianBbm.createdAt))
       .limit(1);
 
@@ -46,53 +50,37 @@ export async function POST(req: Request) {
     let rasio = 0;
 
     if (lastRecord.length > 0) {
-      const lastMeter = parseFloat(lastRecord[0].meterAkhir as string);
+      const lastMeter = parseFloat(String(lastRecord[0].meterAkhir || "0"));
       pemakaian = nMeterAkhir - lastMeter;
 
-      if (pemakaian >= 0) {
-        if (pemakaian > 0) {
-          rasio = nLiter / pemakaian;
-        }
+      if (pemakaian > 0) {
+        rasio = nLiter / pemakaian;
       }
     }
 
-    // Insert ke pengisian_bbm
-    // Catatan: Jika ada isKm dari master data, lebih baik dikirim dari frontend. 
-    // Tapi karena ini bypass, kita simpan nilainya tanpa blokir error validasi
+    // 3. Insert ke pengisian_bbm
     await db.insert(pengisianBbm).values({
       tanggal: body.tanggal,
       shift: body.shift || 'P',
-      perusahaan: body.perusahaan || 'PT UTSG', // Fallback
-      jenisAlat: body.jenisAlat || 'Alat Muat', // Fallback
+      perusahaan: body.perusahaan || 'PT UTSG',
+      jenisAlat: body.jenisAlat || 'Alat Muat',
       tipeUnit: body.tipeUnit,
+      nomenklatur: body.nomenklatur,
       meterAkhir: String(nMeterAkhir),
       pemakaian: pemakaian > 0 ? String(pemakaian) : null,
       rasio: rasio > 0 ? String(rasio) : null,
       liter: String(nLiter),
+      keterangan: body.keterangan,
     });
 
-    return NextResponse.json(inserted);
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Terjadi kesalahan server." }, { status: 500 });
+    return NextResponse.json({ success: true, id: newSolar.id }, { status: 201 });
+  } catch (error: any) {
+    console.error("API Error [permintaan-solar]:", error);
+    return NextResponse.json({ 
+      error: "Gagal menyimpan data", 
+      details: error.message || "Terjadi kesalahan internal" 
+    }, { status: 500 });
   }
 }
 
-export async function GET(req: Request) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
 
-    if (id) {
-      const [row] = await db.select().from(permintaanSolar).where(eq(permintaanSolar.id, parseInt(id)));
-      if (!row) return NextResponse.json({ error: "Data tidak ditemukan." }, { status: 404 });
-      return NextResponse.json(row);
-    }
-
-    const data = await db.select().from(permintaanSolar).orderBy(desc(permintaanSolar.createdAt)).limit(100);
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Gagal mengambil data." }, { status: 500 });
-  }
-}

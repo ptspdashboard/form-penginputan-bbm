@@ -15,6 +15,7 @@ type BbmRow = {
   pemakaian: string | null;
   rasio: string | null;
   liter: string;
+  keterangan: string | null;
   createdAt: string;
 };
 
@@ -180,7 +181,7 @@ export default function AdminBbmClient({ data }: { data: BbmRow[] }) {
         {/* Data Table */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[1100px]">
+            <table className="w-full text-left border-collapse min-w-[1200px]">
               <thead>
                 <tr className="bg-slate-800 text-white text-xs">
                   <th className="p-3 font-semibold whitespace-nowrap">Waktu Input</th>
@@ -194,12 +195,13 @@ export default function AdminBbmClient({ data }: { data: BbmRow[] }) {
                   <th className="p-3 font-semibold whitespace-nowrap text-right">Liter</th>
                   <th className="p-3 font-semibold whitespace-nowrap text-right">L/Jam</th>
                   <th className="p-3 font-semibold whitespace-nowrap text-right">L/Km</th>
+                  <th className="p-3 font-semibold whitespace-nowrap">Keterangan</th>
                 </tr>
               </thead>
               <tbody className="text-sm">
                 {filtered.length === 0 ? (
                   <tr>
-                    <td colSpan={11} className="p-10 text-center text-slate-400">
+                    <td colSpan={12} className="p-10 text-center text-slate-400">
                       {hasActiveFilter ? "Tidak ada data yang sesuai filter." : "Belum ada data pengisian."}
                     </td>
                   </tr>
@@ -239,6 +241,9 @@ export default function AdminBbmClient({ data }: { data: BbmRow[] }) {
                               {Number(row.rasio).toFixed(2)}
                             </span>
                           ) : <span className="text-slate-300">-</span>}
+                        </td>
+                        <td className="p-3 text-xs text-slate-500 italic max-w-[200px] truncate" title={row.keterangan || ""}>
+                          {row.keterangan || "-"}
                         </td>
                       </tr>
                     );

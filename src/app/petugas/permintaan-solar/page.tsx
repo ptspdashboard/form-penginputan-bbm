@@ -30,7 +30,7 @@ export default function FormPermintaanSolar() {
   const [lastId, setLastId] = useState<number | null>(null);
   
   const [masterData, setMasterData] = useState<MasterData | null>(null);
-  const [lastHmKm, setLastHmKm] = useState<string | null>(null);
+  const [lastMeterValue, setLastMeterValue] = useState<string | null>(null);
   const [hmWarning, setHmWarning] = useState("");
   
   // Refs untuk 4 tanda tangan
@@ -47,8 +47,9 @@ export default function FormPermintaanSolar() {
     jenisAlat: "",
     tipeUnit: "",
     nomenklatur: "",
-    hmKm: "",
-    jumlahPengisian: "",
+    meterAkhir: "",
+    liter: "",
+    keterangan: "",
     pengawasAlat: "", // Operator
     ppiPjoUtsg: "",   // PJO
     pjoPt: "",        // PJO PT
@@ -120,7 +121,7 @@ export default function FormPermintaanSolar() {
   // Fetch last HM
   const fetchLastHm = useCallback(async (nom: string) => {
     if (!nom.trim()) {
-      setLastHmKm(null);
+      setLastMeterValue(null);
       setHmWarning("");
       return;
     }
@@ -128,22 +129,22 @@ export default function FormPermintaanSolar() {
       const res = await fetch(`/api/last-hm-bon?nomenklatur=${encodeURIComponent(nom.trim().toUpperCase())}`);
       const data = await res.json();
       if (data.lastHmKm) {
-        setLastHmKm(data.lastHmKm);
+        setLastMeterValue(data.lastHmKm);
       } else {
-        setLastHmKm(null);
+        setLastMeterValue(null);
       }
       setHmWarning("");
     } catch {
-      setLastHmKm(null);
+      setLastMeterValue(null);
     }
   }, []);
 
   const validateHm = (value: string) => {
-    if (lastHmKm && value) {
+    if (lastMeterValue && value) {
       const current = parseFloat(value);
-      const last = parseFloat(lastHmKm);
+      const last = parseFloat(lastMeterValue);
       if (!isNaN(current) && !isNaN(last) && current < last) {
-        setHmWarning(`HM/KM tidak boleh kurang dari input terakhir (${lastHmKm})`);
+        setHmWarning(`HM/KM tidak boleh kurang dari input terakhir (${lastMeterValue})`);
         return false;
       }
     }
@@ -184,7 +185,7 @@ export default function FormPermintaanSolar() {
     setSuccess(false);
     setErrorMsg("");
 
-    if (!validateHm(formData.hmKm)) {
+    if (!validateHm(formData.meterAkhir)) {
       setLoading(false);
       return;
     }
@@ -232,8 +233,9 @@ export default function FormPermintaanSolar() {
       jenisAlat: "",
       tipeUnit: "",
       nomenklatur: "",
-      hmKm: "",
-      jumlahPengisian: "",
+      meterAkhir: "",
+      liter: "",
+      keterangan: "",
       pengawasAlat: "",
       ppiPjoUtsg: "",
       pjoPt: "",
@@ -244,7 +246,7 @@ export default function FormPermintaanSolar() {
     setSuccess(false);
     setStep(1);
     setLastId(null);
-    setLastHmKm(null);
+    setLastMeterValue(null);
     setHmWarning("");
     setManualPerusahaan(false);
     setManualJenisAlat(false);
@@ -425,23 +427,33 @@ export default function FormPermintaanSolar() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">HM / KM</label>
-                    <input type="number" step="0.1" required placeholder="Contoh: 11398" value={formData.hmKm} 
+                    <input type="number" step="0.1" required placeholder="Contoh: 11398" value={formData.meterAkhir} 
                       onChange={(e) => {
-                        setFormData({...formData, hmKm: e.target.value});
+                        setFormData({...formData, meterAkhir: e.target.value});
                         validateHm(e.target.value);
                       }}
                       className={`${inputClass} ${hmWarning ? 'border-red-400 bg-red-50' : ''}`} 
                     />
-                    {lastHmKm && <p className="text-xs text-blue-600 mt-1">Terakhir: {lastHmKm}</p>}
+                    {lastMeterValue && <p className="text-xs text-blue-600 mt-1">Terakhir: {lastMeterValue}</p>}
                     {hmWarning && <p className="text-xs text-red-600 mt-1">{hmWarning}</p>}
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">Jumlah (Liter)</label>
                     <div className="relative">
-                      <input type="number" step="0.01" required placeholder="Contoh: 584" value={formData.jumlahPengisian} onChange={(e) => setFormData({...formData, jumlahPengisian: e.target.value})} className={inputClass} />
+                      <input type="number" step="0.01" required placeholder="Contoh: 584" value={formData.liter} onChange={(e) => setFormData({...formData, liter: e.target.value})} className={inputClass} />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-semibold">L</span>
                     </div>
                   </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Keterangan (Opsional)</label>
+                  <textarea 
+                    placeholder="Tambahkan catatan jika ada..." 
+                    value={formData.keterangan} 
+                    onChange={(e) => setFormData({...formData, keterangan: e.target.value})} 
+                    className={`${inputClass} min-h-[80px] resize-none`}
+                  ></textarea>
                 </div>
 
                 {/* Operator Section */}
